@@ -3,8 +3,7 @@ let currentPokemonInfo = []
 
 function setPokeInfo(responseAsJSON) {
     let id = responseAsJSON.id
-    let name = responseAsJSON.name
-    let img = responseAsJSON.sprites.other.dream_world.front_default
+    let img = findIMG(responseAsJSON)
     let height = responseAsJSON.height * 10 +' cm'
     height = height.replace('.', ',')
     let weight = responseAsJSON.weight / 10 + ' kg'
@@ -13,8 +12,23 @@ function setPokeInfo(responseAsJSON) {
     let moves = getMoves(responseAsJSON.moves)
     let types = getTypes(responseAsJSON.types)
     let exp = responseAsJSON.base_experience
+    let abilities = responseAsJSON.abilities 
 
-    return {id, name, img, height, weight, stats, moves, types, exp}
+    return {id, img, height, weight, stats, moves, types, exp, abilities}
+}
+
+
+function findIMG(responseAsJSON) {
+    if (responseAsJSON.sprites.other.dream_world.front_default == null) {
+        return responseAsJSON.sprites.other.home.front_default
+    } else {
+        return responseAsJSON.sprites.other.dream_world.front_default
+    }
+}
+
+
+function pushGermanNametoArray([responseAsJSON, i]) {
+    allPokemonInfo[i].name = responseAsJSON.names[5].name
 }
 
 

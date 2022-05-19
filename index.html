@@ -19,7 +19,16 @@
 </head>
 
 <body onload="init()">
-    <div class="search">
+    <div class="loader" id="loader">
+        <div class="loader-circle1">
+        </div>
+        <div class="loader-circle2">
+        </div>
+        <div class="loader-circle3">
+        </div>
+    </div>
+
+    <div class="search" id="search">
         <img src="./img/International_Pokémon_logo.svg.png" alt="">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Englischer Name oder id" id="input-search"
@@ -33,11 +42,13 @@
         <div class="infobox">
             <div class="card">
                 <div class="info-card-header">
+                    <img src="./img/arrow-94-64.png" onclick="lastPokemon()">
                     <h4>Pokedex</h4>
+                    <img src="./img/arrow-3-64.png" onclick="nextPokemon()">
+                </div>
 
-                    <div class="id">
-                        <h5>#646</h5>
-                    </div>
+                <div class="info-card-header">
+                    <h4>6</h4>
                 </div>
                 <div class="watermark">
                     <img src="./img/watermark2.png" alt="">

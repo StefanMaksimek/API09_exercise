@@ -47,10 +47,11 @@ function openInfoCardHTML(i) {
     <div class="infobox">
             <div class="info-card" style="background-image: linear-gradient(var(--${allPokemonInfo[i].types[0]}-bg-color), rgb(255, 255, 255));">
                 <div class="info-card-header">
-                    <h4>#${allPokemonInfo[i].id}</h4>
-                    
-                    <h4>Pokedex</h4>
+                    <img src="./img/arrow-94-64.png" onclick="lastPokemon(${allPokemonInfo[i].id})">
+                    <h4 onclick="closeInfoCard()">Pokedex</h4>
+                    <img src="./img/arrow-3-64.png" onclick="nextPokemon(${allPokemonInfo[i].id})">
                 </div>
+
                 <div class="watermark">
                     <img src="./img/watermark2.png" alt="">
                 </div>
@@ -59,11 +60,10 @@ function openInfoCardHTML(i) {
                     class="card-img-top" alt="...">
             </div>
 
-            <h2>${capitalizeFirstLetter(allPokemonInfo[i].name)}</h2>
+            <h2>${capitalizeFirstLetter(allPokemonInfo[i].name)} #${allPokemonInfo[i].id}</h2>
 
-            <div class="badge-holder">
-                <span class="badge" style="background-color: var(--${allPokemonInfo[i].types[0]}-bg-color);">${capitalizeFirstLetter(allPokemonInfo[i].types[0])}</span>
-                <span class="badge" style="background-color: #9999ff;">Secondary</span>
+            <div class="badge-holder" id="info-badge-holder">
+                
             </div>
 
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -109,10 +109,8 @@ function openInfoCardHTML(i) {
                     </div>
 
                     <div class="s-info-holder">
-                        <div class="s-info">
-                            <span class="s-info-value">blaze</span>
-                            <span class="s-info-value">solar-power</span>
-                            <span class="s-info-name">Fähigkeiten</span>
+                        <div class="s-info" id="s-info">
+                            
                         </div>
                     </div>
                 </div>
@@ -124,7 +122,7 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">HP</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.hp}%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.hp}%; background-color: var(--yellow); color: var(--blue);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.hp}
                                 </div>
@@ -136,7 +134,7 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">DEF</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.defense}%" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.defense}%; background-color: var(--rock-color);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.defense}
                                 </div>
@@ -148,7 +146,7 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">ATK</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.attack}%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.attack}%; background-color: var(--fire-color);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.attack}
                                 </div>
@@ -157,10 +155,10 @@ function openInfoCardHTML(i) {
                     </ul>
 
                     <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item w-20">${allPokemonInfo[i].stats.speed}</li>
+                        <li class="list-group-item w-20">SPD</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.speed}%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.speed}%; background-color: var(--flying-color);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.speed}
                                 </div>
@@ -172,7 +170,7 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">sAT</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.specialAttack}%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.specialAttack}%; background-color: var(--ghost-color);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.specialAttack}
                                 </div>
@@ -184,7 +182,7 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">sDF</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.specialDefense}%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].stats.specialDefense}%; background-color: var(--ice-color);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
                                     ${allPokemonInfo[i].stats.specialDefense}
                                 </div>
@@ -196,9 +194,9 @@ function openInfoCardHTML(i) {
                         <li class="list-group-item w-20">EXP</li>
                         <li class="list-group-item w-100">
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 29.5%;" aria-valuenow="25"
+                                <div class="progress-bar" role="progressbar" style="width: ${allPokemonInfo[i].exp / 10}%; background-color: var(--blue);" aria-valuenow="25"
                                     aria-valuemin="0" aria-valuemax="100">
-                                    295
+                                    ${allPokemonInfo[i].exp}
                                 </div>
                             </div>
                         </li>
@@ -212,4 +210,13 @@ function openInfoCardHTML(i) {
             </div>
         </div>
     `;
+}
+
+function setMovesToInfoCardHTML(move) {
+    return `<span class="move-badge" style="background-color: var(--blue); color: var(--yellow);">${move}</span>`
+}
+
+
+function setAbilitiesHTML(abilitie) {
+   return `<span class="s-info-value">${abilitie}</span>` 
 }
